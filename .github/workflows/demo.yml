@@ -24,12 +24,14 @@ jobs:
     - name: Push Docker image
       run: docker push djibsonbecks/tpl3-php:latest
 
+
     - name: Slack Success
       if: success()
       run: |
         curl -X POST -H 'Content-type: application/json' \
         --data "{\"text\":\"Docker build et push SUCCESS\"}" \
         ${{ secrets.SLACK_WEBHOOK_URL }}
+
 
     - name: Slack Failure
       if: failure()
